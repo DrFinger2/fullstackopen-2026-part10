@@ -6,6 +6,7 @@ const theme = {
     appBarBackground: "#24292e",
     appBarText: "white",
     background: "white",
+    backgroundSecondary: "#c4c4c4",
   },
   fontSizes: {
     body: 14,

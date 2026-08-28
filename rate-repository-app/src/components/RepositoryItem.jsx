@@ -1,32 +1,50 @@
 import React from "react";
 import { View, Image, StyleSheet } from "react-native";
+import RatingItem from "./RatingItem";
 import Text from "./Text";
 import theme from "../theme";
 
 const styles = StyleSheet.create({
   container: {
     padding: 20,
+    paddingBottom: 10,
     backgroundColor: theme.colors.background,
     flexDirection: "column",
     justifyContent: "flex-start",
   },
 
-  userContainer: {
+  userRow: {
     flexDirection: "row",
     justifyContent: "flex-start",
     alignContent: "flex-start",
     gap: 10,
     marginRight: 5,
-    paddingBottom: 5,
+    paddingBottom: 20,
   },
 
-  userInfoContainer: {
+  userContent: {
     flexDirection: "column",
     justifyContent: "flex-start",
     alignItems: "flex-start",
     flex: 1,
     flexShrink: 1,
-    gap: 3,
+    gap: 5,
+  },
+
+  userDetails: {
+    minHeight: "46",
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    gap: 4,
+  },
+
+  ratingContainer: {
+    flexDirection: "row",
+    gap: 5,
+    justifyContent: "space-around",
+    alignContent: "center",
+    alignItems: "center",
+    paddingVertical: 10,
   },
 
   image: {
@@ -38,7 +56,7 @@ const styles = StyleSheet.create({
   language: {
     backgroundColor: theme.colors.primary,
     borderRadius: theme.border.radius,
-    paddingHorizontal: 10,
+    paddingHorizontal: 15,
     paddingVertical: 5,
     color: "white",
   },
@@ -47,21 +65,25 @@ const styles = StyleSheet.create({
 const RepositoryItem = ({ item }) => {
   return (
     <View style={styles.container}>
-      <View style={styles.userContainer}>
+      <View style={styles.userRow}>
         <Image source={{ uri: item.ownerAvatarUrl }} style={styles.image} />
-        <View style={styles.userInfoContainer}>
-          <Text fontWeight="bold" fontSize="subheading">
-            {item.fullName}
-          </Text>
+        <View style={styles.userContent}>
+          <View style={styles.userDetails}>
+            <Text fontWeight="bold" fontSize="subheading">
+              {item.fullName}
+            </Text>
+
+            <Text color="textSecondary">{item.description}</Text>
+          </View>
           <Text style={styles.language}> {item.language}</Text>
-          <Text color="textSecondary">Description: {item.description}</Text>
         </View>
       </View>
-
-      <Text>Stars: {item.stargazersCount}</Text>
-      <Text>Forks: {item.forksCount}</Text>
-      <Text>Rating: {item.ratingAverage}</Text>
-      <Text>Reviews: {item.reviewCount}</Text>
+      <View style={styles.ratingContainer}>
+        <RatingItem count={item.stargazersCount} text="Stars" />
+        <RatingItem count={item.forksCount} text="forks" />
+        <RatingItem count={item.ratingAverage} text="Rating" />
+        <RatingItem count={item.reviewCount} text="Reviews" />
+      </View>
     </View>
   );
 };
