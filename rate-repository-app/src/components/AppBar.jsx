@@ -2,24 +2,30 @@ import { View, StyleSheet } from "react-native";
 import Constants from "expo-constants";
 import theme from "../theme";
 import AppBarTab from "./AppBarTab";
+import { useNavigate } from "react-router-native";
+import { ScrollView } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
     paddingTop: Constants.statusBarHeight,
+    backgroundColor: theme.colors.appBarBackground,
+    paddingLeft: 20,
+  },
+  scrollView: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: theme.colors.appBarBackground,
     gap: 20,
-    paddingLeft: 20,
   },
 });
 
 const AppBar = () => {
-  const handlePress = () => {};
-
+  const navigate = useNavigate();
   return (
     <View style={styles.container}>
-      <AppBarTab onPress={handlePress}>Repositories</AppBarTab>
+      <ScrollView horizontal={true} contentContainerStyle={styles.scrollView}>
+        <AppBarTab onPress={() => navigate("/")}>Repositories</AppBarTab>
+        <AppBarTab onPress={() => navigate("/signin")}>Sign in</AppBarTab>
+      </ScrollView>
     </View>
   );
 };
