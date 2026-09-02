@@ -5,6 +5,7 @@ import RepositoryList from "./RepositoryList";
 import SignIn from "./SignIn";
 import AppBar from "./AppBar";
 import theme from "../theme";
+import useUsers from "../hooks/useUsers";
 
 const styles = StyleSheet.create({
   container: {
@@ -15,6 +16,12 @@ const styles = StyleSheet.create({
 });
 
 const Main = () => {
+  const { data, loading } = useUsers();
+
+  if (!loading) {
+    console.log("----DATA----", data);
+  }
+
   return (
     <View style={styles.container}>
       <AppBar></AppBar>
