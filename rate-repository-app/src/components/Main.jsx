@@ -19,7 +19,8 @@ const Main = () => {
   const { data, loading } = useUsers();
 
   if (!loading) {
-    console.log("----DATA----", data);
+    const usernames = data ? data.edges.map((edge) => edge.node.username) : [];
+    console.log("----usernames----", usernames);
   }
 
   return (

@@ -6,7 +6,7 @@ const useUsers = () => {
     fetchPolicy: "cache-and-network",
   });
 
-  return { data: data?.usernames, loading, refetch };
+  return { data: data?.users, loading, refetch };
 };
 
 export default useUsers;

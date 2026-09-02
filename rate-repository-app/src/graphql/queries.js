@@ -25,7 +25,7 @@ export const GET_ALL_USERS = gql`
     users {
       edges {
         node {
-          usernames
+          username
         }
       }
     }
