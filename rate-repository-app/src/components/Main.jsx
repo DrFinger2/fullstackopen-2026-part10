@@ -5,7 +5,6 @@ import RepositoryList from "./RepositoryList";
 import SignIn from "./SignIn";
 import AppBar from "./AppBar";
 import theme from "../theme";
-import useUsers from "../hooks/useUsers";
 
 const styles = StyleSheet.create({
   container: {
@@ -16,13 +15,6 @@ const styles = StyleSheet.create({
 });
 
 const Main = () => {
-  const { data, loading } = useUsers();
-
-  if (!loading) {
-    const usernames = data ? data.edges.map((edge) => edge.node.username) : [];
-    console.log("----usernames----", usernames);
-  }
-
   return (
     <View style={styles.container}>
       <AppBar></AppBar>
